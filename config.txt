@@ -21,7 +21,28 @@ git checkout nome-da-branch => canso não estiver
 
 #para verificar se o projeto em dbt está pronto para rodar utilize o comando dbt debug
 
-2- vamos usar o seeds para carregar arquvos csv, coloque la dentro os arquivos e rode o comandao dbt seeds para ver se vai criar o banco com os dados dos arquivos
+2- vamos usar o seeds para carregar arquvos csv, coloque la dentro os arquivos e rode o comandao "dbt seed" para ver se vai criar o banco com os dados dos arquivos, estando tudo ok, passe para o proximo passo
+
+3- crie dentro de models as 3 pastas principais:
+    - staging
+    - intermediate
+    - marts
+
+4- agora dentro de staging que é nosso primeiro estagio vamos criar o arquivo sources.yml
+
+5- depois vamos criar os .sql no staging, para rodar todos de uma vez você pode rodar:
+    - dbt run -s models/staging/*.sql
+    - ou
+    - dbt build
+
+
+
+
+
+
+
+
+
 
 
 
