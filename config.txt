@@ -35,6 +35,16 @@ git checkout nome-da-branch => canso não estiver
     - ou
     - dbt build
 
+6- se não der nada errado vamos para o proximo passo, agora vamos usar a intermediate, entao crie um arquivo int_pedidos_vendidos.sql
+
+7- criar a pasta marts se caso não estiver criada dentro de model e criar o arquivo fct_pedidos_vendidos
+
+8- depois rodar dbt run -s fct_pedidos_vendidos para criar nossa tabela dentro do shema marts
+
+9- rodar dbt docs generate para criar a documentação
+
+10- para abrir o servidor dbt docs serve --host 127.0.0.1
+
 
 
 
