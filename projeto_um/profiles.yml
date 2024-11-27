@@ -1,0 +1,10 @@
+projeto_um:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: 'dbt-projeto-442519'
+      dataset: "{{ env_var('DBT_DBNAME', 'dbt_dw') }}"
+      threads: 4
+      keyfile: /home/borges/.dbt/dbt-projeto-442519-74456934592f.json

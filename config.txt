@@ -1,0 +1,58 @@
+python -m pip install dbt-core dbt-bigquery
+
+#criar uma brach de desenvolvimento
+git checkout -b develop
+
+git branch => verificar a branch
+
+git checkout nome-da-branch => canso não estiver
+
+#para iniciar o projeto no terminal digite dbt init
+#coloque o nome do projeto
+#selecione [1] bigquery = digite 1
+#autenticação = digite 1
+#id do projeto = digite 1
+#dataser = digite 1
+#threads = digite 1
+#job_executation_timeouts = digite 1
+#desired = digite 1
+
+1- configurar o profiles, crie dentro da pasta do projeto profile.yml
+
+#para verificar se o projeto em dbt está pronto para rodar utilize o comando dbt debug
+
+2- vamos usar o seeds para carregar arquvos csv, coloque la dentro os arquivos e rode o comandao "dbt seed" para ver se vai criar o banco com os dados dos arquivos, estando tudo ok, passe para o proximo passo
+
+3- crie dentro de models as 3 pastas principais:
+    - staging
+    - intermediate
+    - marts
+
+4- agora dentro de staging que é nosso primeiro estagio vamos criar o arquivo sources.yml
+
+5- depois vamos criar os .sql no staging, para rodar todos de uma vez você pode rodar:
+    - dbt run -s models/staging/*.sql
+    - ou
+    - dbt build
+
+6- se não der nada errado vamos para o proximo passo, agora vamos usar a intermediate, entao crie um arquivo int_pedidos_vendidos.sql
+
+7- criar a pasta marts se caso não estiver criada dentro de model e criar o arquivo fct_pedidos_vendidos
+
+8- depois rodar dbt run -s fct_pedidos_vendidos para criar nossa tabela dentro do shema marts
+
+9- rodar dbt docs generate para criar a documentação
+
+10- para abrir o servidor dbt docs serve --host 127.0.0.1
+
+
+
+
+
+
+
+
+
+
+
+
