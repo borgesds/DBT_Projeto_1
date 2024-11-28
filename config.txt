@@ -45,6 +45,91 @@ git checkout nome-da-branch => canso não estiver
 
 10- para abrir o servidor dbt docs serve --host 127.0.0.1
 
+11- vamos começar a fazer algumas alterações, como colocar uma tabela incremental, buscamos o script stg_pedidos.sql para essa alteração:
+    antes:
+        with source as (
+            select
+            *
+            from {{ source('ecomerce','pedidos') }}
+        )
+
+        select
+        *
+        from source
+
+    depois: 
+        {{ config(
+            materialized='incremental'
+        ) }}
+
+        with source as (
+            select
+            *
+            from {{ source('ecomerce','pedidos') }}
+        )
+
+        select
+        *
+        from source
+
+        {% if is_incremental() %}
+            where data_pedido >= (select max(data_pedido) from {{ this }})
+        {% endif %}
+
+12- na pasta snepshots vamo criar um aruivo .sql para monitorar os registros alterados:
+    {% snapshot pedido_snapshot %}
+        {{
+            config(
+                target='clientes',
+                target_schema='stg',
+                unique_key='id',
+                strategy='timestamp',
+                updated_at='data_registro'
+            )
+        }}
+
+        select
+            id
+            , nome
+            , email
+            , telefone
+            , data_registro
+        from {{ ref('stg_clientes') }}
+
+    {% endsnapshot %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
